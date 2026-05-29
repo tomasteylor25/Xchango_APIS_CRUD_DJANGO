@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config 
+
+DEBUG = config('XCHANGO_DEBUG', cast=bool)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +28,7 @@ SECRET_KEY = 'django-insecure-*-y2h)2__qai^9f)$4@c109=7ok(wxk1=0q_wts_r1*$g%1%ze
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -37,6 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #APP para usar el API REST
+    'rest_framework',
+    #APP para usar swagger
+    'drf_yasg',
+    #APP del api
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -74,8 +83,20 @@ WSGI_APPLICATION = 'backen.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+       # Definicion del motor de la base
+        'ENGINE': 'django.db.backends.postgresql',
+
+        'NAME': config('XCHANGO_PGDB'),
+        'USER': config('XCHANGO_PGUSER'),
+        'PASSWORD': config('XCHANGO_PGPASS'),
+        'HOST': config('XCHANGO_PGHOST'),
+        'PORT': config('XCHANGO_PGPORT'),
+
+        'OPTIONS': {
+            'options': f'-c search_path={config("XCHANGO_PGSCHEMA")}'
+        }
+
     }
 }
 
