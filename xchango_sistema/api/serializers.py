@@ -1,52 +1,68 @@
 from rest_framework import serializers
 
 from .models import (
-    NivelAcceso,
-    Permiso,
-    Administrador,
-    AdministradorPermiso,
-    HistorialAdmin,
-    Notificacion,
+    Publicacion,
+    ImagenPublicacion,
+    SubCategoria,
+    PublicacionCategoria,
+    BienFisico,
+    Servicio,
+    BienDigital,
+    Favorito,
 )
 
 
-# Serializer para nivel_acceso
-class NivelAccesoSerializer(serializers.ModelSerializer):
+# Serializer para publicacion
+class PublicacionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = NivelAcceso
+        model = Publicacion
         fields = '__all__'
 
 
-# Serializer para permiso
-class PermisoSerializer(serializers.ModelSerializer):
+# Serializer para imagenpublicacion
+class ImagenPublicacionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Permiso
+        model = ImagenPublicacion
         fields = '__all__'
 
 
-# Serializer para administrador
-class AdministradorSerializer(serializers.ModelSerializer):
+# Serializer para sub_categoria
+class SubCategoriaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Administrador
+        model = SubCategoria
         fields = '__all__'
 
 
-# Serializer para administradorpermiso
-class AdministradorPermisoSerializer(serializers.ModelSerializer):
+# Serializer para publicacioncategoria
+class PublicacionCategoriaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AdministradorPermiso
+        model = PublicacionCategoria
         fields = '__all__'
 
 
-# Serializer para historialadmin
-class HistorialAdminSerializer(serializers.ModelSerializer):
+# Serializer para bienfisico
+class BienFisicoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = HistorialAdmin
+        model = BienFisico
         fields = '__all__'
 
 
-# Serializer para notificacion
-class NotificacionSerializer(serializers.ModelSerializer):
+# Serializer para servicio
+class ServicioSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Notificacion
+        model = Servicio
+        fields = '__all__'
+
+
+# Serializer para biendigital
+class BienDigitalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BienDigital
+        fields = '__all__'
+
+
+# Serializer para favorito
+class FavoritoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Favorito
         fields = '__all__'
